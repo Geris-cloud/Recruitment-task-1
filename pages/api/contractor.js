@@ -1,15 +1,10 @@
-import { createConnection } from 'mysql';
-import { dbConfig } from '../../next.config.js';
-const db = createConnection(dbConfig);
+import db from '../../lib/db'
 
-export default function appGet(req, res) {
-  db.query(`SELECT * FROM contractor`,
-    (err, results) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(results)
-      }
-    }
-  )
+export default async function contractorGet(_, res) {
+  try {
+    const results = await db('SELECT * FROM contractor');
+    return res.send(results);
+  } catch (err) {
+    return res.json({ message: err.message })
+  }
 }

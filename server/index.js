@@ -1,13 +1,3 @@
-require('dotenv').config();
-const mysql = require('mysql');
-const config = require('../next.config.js');
-const db = mysql.createConnection(config.dbConfig);
-
-const express = require('express');
-const app = express();
-
-const cors = require('cors');
-app.use(cors());
 app.use(express.json());
 
 const appGet = (endpoint, table) => {

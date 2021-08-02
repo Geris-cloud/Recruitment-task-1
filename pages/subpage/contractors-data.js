@@ -20,14 +20,14 @@ export default function ContractorsData({ hamb }) {
 
   const [propId, setPropId] = useState('');
 
-  const addContractor = (idVal) => {
+  const addContractor = () => {
     axios.post("https://recruitment-tasks.herokuapp.com/send", {
       NIP: nip, REGON: regon, NAME: name, VAT: vat, STREET: street, HOUSE: house, FLAT: flat,
     })
       // .then(() => {
       //   setContractorsList([
       //     ...contractorsList,
-      //     { id: idVal, NIP: nip, REGON: regon, NAME: name, VAT: vat, STREET: street, HOUSE: house, FLAT: flat },
+      //     { NIP: nip, REGON: regon, NAME: name, VAT: vat, STREET: street, HOUSE: house, FLAT: flat },
       //   ]);
       // })
       .then(() => {

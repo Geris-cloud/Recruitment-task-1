@@ -1,16 +1,11 @@
-import { createConnection } from 'mysql';
-import { dbConfig } from '../../../next.config.js';
-const db = createConnection(dbConfig);
+import db from '../../../lib/db'
 
-export default function del(req, res) {
+export default async function del(req, res) {
   const id = req.params.id;
-
-  db.query("DELETE FROM contractor WHERE id = ?", id,
-    (err, results) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.send(results);
-      }
-    });
+  try {
+    await db('DELETE FROM contractor WHERE id = ?', id);
+    return res.json({ message: 'success' });
+  } catch (err) {
+    return res.json({ message: err.message })
+  }
 };
